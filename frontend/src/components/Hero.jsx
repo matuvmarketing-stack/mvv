@@ -62,7 +62,7 @@ export default function Hero() {
         <h1 className="font-display font-black uppercase tracking-tighter leading-[0.88] text-[clamp(3.4rem,10vw,8.5rem)] text-white">
           <MaskedLine delay={BASE_DELAY}>Viste tu</MaskedLine>
           <MaskedLine delay={BASE_DELAY + 0.12}>
-            <span className="text-outline">límite</span>
+            <span className="text-white">límite</span>
             <span className="text-accent">.</span>
           </MaskedLine>
         </h1>

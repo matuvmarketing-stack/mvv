@@ -260,6 +260,113 @@ async def create_contact(payload: ContactCreate):
     return {"ok": True, "id": msg.id}
 
 
+# ---------------- AI Shopping Assistant (Claude) ----------------
+import json
+from starlette.responses import StreamingResponse
+from emergentintegrations.llm.chat import LlmChat, UserMessage, TextDelta, StreamDone
+
+ASSISTANT_MODEL = ("anthropic", "claude-sonnet-4-6")
+
+
+class ChatIn(BaseModel):
+    session_id: str
+    message: str
+
+
+class ChatMessageDoc(BaseDocument):
+    session_id: str
+    role: str
+    text: str
+    created_at: str
+
+
+ASSISTANT_SYSTEM_PROMPT = """Eres el asistente de compras de RH11, una marca de ropa deportiva premium y minimalista. Tono: cercano, directo, sobrio y con carácter. Responde SIEMPRE en español, de forma concisa (2-4 frases salvo que pidan más detalle).
+
+CATÁLOGO (solo existen estas dos prendas):
+1) Sudadera RH11 Heavyweight Hood — 89,00 €
+   - 420 GSM French Terry, 100% algodón peinado orgánico. Confeccionada en Portugal, tintada en España.
+   - Capucha envolvente sin cordones visibles, bolsillo canguro oculto, corte oversize atlético, puños dobles elásticos, interior afelpado térmico.
+   - Colores: Negro Obsidiana, Gris Carbón, Rojo Umbra. Tallas: XS-XXL.
+2) Camiseta RH11 Tactical Boxy Tee — 45,00 €
+   - 240 GSM single jersey, 100% algodón peinado premium. Confeccionada en Portugal.
+   - Cuello cerrado de 3 cm reforzado, hombro caído, acabado matte, costuras planas anti-rozaduras.
+   - Colores: Negro Obsidiana, Gris Grafito. Tallas: XS-XXL.
+
+GUÍA DE TALLAS (medidas de la prenda en cm, en plano):
+- XS: pecho 104, largo 68, manga 59 — recomendado 160-170 cm / 55-65 kg
+- S: pecho 108, largo 70, manga 60 — recomendado 168-175 cm / 65-72 kg
+- M: pecho 114, largo 72, manga 61 — recomendado 173-182 cm / 72-80 kg
+- L: pecho 120, largo 74, manga 62 — recomendado 178-188 cm / 80-88 kg
+- XL: pecho 126, largo 76, manga 63 — recomendado 182-192 cm / 88-96 kg
+- XXL: pecho 132, largo 78, manga 64 — recomendado 185-198 cm / >95 kg
+
+ASESORÍA DE TALLAS: si el cliente da altura y peso, recomienda UNA talla concreta usando la columna "recomendado" y explica brevemente por qué. El corte es boxy/oversize: si está entre dos tallas y prefiere un look más entallado, puede bajar una talla. Si solo da un dato, pide amablemente el otro.
+
+POLÍTICAS: envío 24/48h en península, gratuito a partir de 70 € (si no, 4,95 €). Devoluciones 30 días con prenda sin usar. Packaging negro mate compostable con precinto numerado. Pago contra entrega al tramitar el pedido desde el carrito.
+
+REGLAS: no inventes productos, precios ni políticas fuera de esta información. Si preguntan por algo que no existe, redirígelo con elegancia a las dos piezas. Cuida la ortografía española (ñ, acentos)."""
+
+
+def _clean_session(sid: str) -> str:
+    return "".join(c for c in sid if c.isalnum() or c == "-")[:64] or "anon"
+
+
+@api_router.post("/assistant/chat")
+async def assistant_chat(payload: ChatIn):
+    message = payload.message.strip()[:2000]
+    if not message:
+        raise HTTPException(status_code=400, detail="Mensaje vacío")
+    sid = _clean_session(payload.session_id)
+    await db.chat_messages.insert_one(
+        ChatMessageDoc(
+            session_id=sid, role="user", text=message,
+            created_at=datetime.now(timezone.utc).isoformat(),
+        ).to_mongo()
+    )
+    chat = (
+        LlmChat(
+            api_key=os.environ["EMERGENT_LLM_KEY"],
+            session_id=f"rh11-assistant-{sid}",
+            system_message=ASSISTANT_SYSTEM_PROMPT,
+        )
+        .with_model(*ASSISTANT_MODEL)
+    )
+
+    async def event_generator():
+        full = ""
+        try:
+            async for ev in chat.stream_message(UserMessage(text=message)):
+                if isinstance(ev, TextDelta):
+                    full += ev.content
+                    yield f"data: {json.dumps({'type': 'delta', 'content': ev.content})}\n\n"
+                elif isinstance(ev, StreamDone):
+                    break
+        except Exception as exc:
+            logger.error(f"Assistant error: {exc}")
+            yield f"data: {json.dumps({'type': 'error', 'detail': 'El asistente no está disponible ahora mismo. Inténtalo en unos segundos.'})}\n\n"
+            return
+        await db.chat_messages.insert_one(
+            ChatMessageDoc(
+                session_id=sid, role="assistant", text=full,
+                created_at=datetime.now(timezone.utc).isoformat(),
+            ).to_mongo()
+        )
+        yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+@api_router.get("/assistant/history/{session_id}")
+async def assistant_history(session_id: str):
+    sid = _clean_session(session_id)
+    docs = await db.chat_messages.find({"session_id": sid}).sort("_id", 1).to_list(200)
+    return [{"role": d["role"], "text": d["text"], "created_at": d.get("created_at")} for d in docs]
+
+
 app.include_router(api_router)
 
 app.add_middleware(

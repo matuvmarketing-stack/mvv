@@ -25,11 +25,13 @@ Tienda online de venta directa para una marca de ropa deportiva con solo dos pro
 
 ## Implementado (2026-09-28)
 - Todo lo anterior, verificado con curl y flujo e2e de compra (pedido RH11-MCHGUQ registrado).
+- Asistente de compras IA con Claude (claude-sonnet-4-6 vía EMERGENT_LLM_KEY): chat flotante con streaming SSE (POST /api/assistant/chat), historial persistido en MongoDB (GET /api/assistant/history/{session_id}), system prompt con catálogo real, guía de tallas y políticas; asesor de tallas por altura/peso. Verificado e2e.
+- Hero: palabra "LÍMITE" con relleno blanco (edición visual pedida por el usuario).
 
 ## Backlog (P0/P1/P2)
 - P0: —
 - P1: pasarela de pago real (Stripe test ya disponible), emails de confirmación (Resend gestionado).
-- P2: panel admin para ver pedidos, más productos/colores, reseñas.
+- P2: panel admin para ver pedidos y conversaciones del asistente, más productos/colores, reseñas.
 
 ## Próximas tareas
 1. Conectar Stripe test para pago con tarjeta dentro del drawer. 2. Email automático de confirmación al registrar pedido. 3. Panel simple de pedidos.

@@ -9,6 +9,7 @@ import Logo from "@/components/Logo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import ChatWidget from "@/components/ChatWidget";
 import Home from "@/pages/Home";
 import ProductPage from "@/pages/ProductPage";
 
@@ -124,8 +125,9 @@ export default function App() {
           <ScrollManager />
           <Shell />
           <div className="grain" aria-hidden="true" />
+          <ChatWidget />
           <Toaster
-            position="bottom-right"
+            position="bottom-left"
             toastOptions={{
               style: {
                 background: "#121212",
