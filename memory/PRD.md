@@ -27,6 +27,7 @@ Tienda online de venta directa para una marca de ropa deportiva con solo dos pro
 - Todo lo anterior, verificado con curl y flujo e2e de compra (pedido RH11-MCHGUQ registrado).
 - Asistente de compras IA con Claude (claude-sonnet-4-6 vía EMERGENT_LLM_KEY): chat flotante con streaming SSE (POST /api/assistant/chat), historial persistido en MongoDB (GET /api/assistant/history/{session_id}), system prompt con catálogo real, guía de tallas y políticas; asesor de tallas por altura/peso. Verificado e2e.
 - Hero: palabra "LÍMITE" con relleno blanco (edición visual pedida por el usuario).
+- Hero simplificado a imagen editorial a pantalla completa: el usuario eliminó mediante ediciones visuales el subtítulo, la línea de métricas y todo el bloque de contenido (titular "Viste tu límite" y CTAs). Queda imagen con parallax, crosshairs y barra de telemetría inferior.
 
 ## Backlog (P0/P1/P2)
 - P0: —
