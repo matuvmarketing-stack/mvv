@@ -1,0 +1,262 @@
+{
+  "brand": {
+    "name": "RH11",
+    "slogan": "Viste tu límite",
+    "sub_tagline": "Ingeniería textil para alto rendimiento y estética urbana sobria.",
+    "target_audience": "Jóvenes y adultos (18-40 años) que buscan ropa técnica, sobria y premium para deporte y calle.",
+    "emotional_tone": "Grounded, tactical, high-performance, dark luxury, monolithic, relentless focus."
+  },
+  "theme": {
+    "mode": "dark",
+    "background": "#0A0A0A",
+    "background_elevated": "#121212",
+    "surface": "#171717",
+    "border_subtle": "rgba(255, 255, 255, 0.08)",
+    "border_active": "rgba(255, 255, 255, 0.22)",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "text_muted": "#71717A",
+    "accent_primary": "#8E0D1A",
+    "accent_hover": "#A61424",
+    "accent_subtle_bg": "rgba(142, 13, 26, 0.15)",
+    "accent_glow": "rgba(142, 13, 26, 0.35)",
+    "rules": [
+      "No full-screen gradients. Use deep obsidian #0A0A0A with 1px border strokes.",
+      "Red accent (#8E0D1A) must be used with tactical restraint: only for primary CTA buttons, active size tags, micro-badges and indicators.",
+      "Never use pure white backgrounds or generic soft pastel cards."
+    ]
+  },
+  "typography": {
+    "headline_font": "Montserrat, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "mono_font": "JetBrains Mono, Menlo, monospace",
+    "scale": {
+      "hero_h1": "text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-none",
+      "section_h2": "text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase tracking-tight",
+      "product_h3": "text-xl sm:text-2xl font-bold uppercase tracking-tight",
+      "card_title": "text-lg sm:text-xl font-bold tracking-tight",
+      "body": "text-sm sm:text-base font-normal text-zinc-300 leading-relaxed",
+      "eyebrow_label": "text-xs font-mono font-semibold uppercase tracking-[0.25em] text-red-500/90",
+      "price_tag": "text-xl sm:text-2xl font-mono font-bold tracking-tight text-white"
+    }
+  },
+  "layout_and_grid": {
+    "container_max_width": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "spacing_scale": "p-4, p-6, p-8, p-12, p-16, p-24, p-32",
+    "edges": "rounded-none or max rounded-sm (tactical, architectural sharp edges)",
+    "header": {
+      "height": "h-20",
+      "style": "fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0A0A0A]/85 border-b border-white/10 transition-all duration-300",
+      "components": [
+        "Brand Logo RH11 with athletic badge dot",
+        "Desktop Nav links: Inicio, Camiseta, Sudadera, Valores, Historia, Contacto",
+        "Cart Drawer Toggle Button with live badge counter (data-testid='cart-toggle-button')",
+        "Mobile hamburger toggle for responsive drawer"
+      ]
+    },
+    "hero": {
+      "type": "Kinetic Fullscreen Hero with masked line-by-line reveal, technical crosshairs, and live interaction",
+      "elements": [
+        "Technical status label: 'COLLECCIÓN 01 // EDICIÓN LIMITADA'",
+        "Headline line-by-line staggered reveal: 'VISTE TU LÍMITE'",
+        "Product subtitle with technical metrics: 'Algodón denso 420 GSM / Costuras reforzadas blind / Corte boxy atlético'",
+        "Dual CTA: 'Comprar Sudadera' & 'Comprar Camiseta' with immediate scroll-to/modal trigger",
+        "Hero visual: Split canvas with dynamic atmospheric lighting spotlight and high-contrast silhouette",
+        "Bottom telemetry ribbon: '01 / 02 ARTÍCULOS - FABRICADO EN LA PENÍNSULA - ENVÍO 24/48H'"
+      ]
+    },
+    "marquee": {
+      "style": "Editorial slow-drift ribbon",
+      "background": "#0D0D0D",
+      "border": "border-y border-white/10",
+      "items": [
+        "RH11 // VISTE TU LÍMITE",
+        "TEJIDO 420 GSM HEAVYWEIGHT",
+        "CORTE BOXY ATTEMPTS",
+        "ZERO DISTRACCIONES",
+        "COSTURAS BLINDADAS",
+        "EDICIÓN LIMITADA 2026"
+      ]
+    },
+    "two_products_grid": {
+      "structure": "2-column brutalist split grid (md:grid-cols-2 gap-8 lg:gap-12)",
+      "card_style": "group relative bg-[#121212] border border-white/10 hover:border-red-900/50 transition-all duration-500 overflow-hidden",
+      "features": [
+        "Product photo with dark spotlight zoom hover effect",
+        "Technical spec pill overlay (e.g., '420 GSM' / '240 GSM')",
+        "Instant 'Vista Rápida' / 'Ver producto' primary button",
+        "Price, name, colorway tags and stock counter"
+      ]
+    },
+    "product_detail_view": {
+      "mode": "Dedicated modal and full in-page deep dive with routing support (/producto/sudadera and /producto/camiseta)",
+      "features": [
+        "Interactive Image Gallery with 3 high-res angles + zoom on hover preview",
+        "Size selector buttons (XS, S, M, L, XL, XXL) with stock availability indicators",
+        "Color selector (Negro Obsidiana, Carbón Técnico, Rojo Umbra)",
+        "Quantity counter with micro +/- controls",
+        "Interactive Size Guide Dialog (modal con tabla de medidas exactas en cm: pecho, largo, manga)",
+        "Materials & Care Accordion (Composición, lavado, durabilidad)",
+        "Direct 'Añadir al Carrito' CTA with Sonner feedback toast"
+      ]
+    },
+    "brand_values_section": {
+      "title": "INGENIERÍA & DISCIPLINA",
+      "subtitle": "Cuatro pilares innegociables en cada patrón de RH11",
+      "grid": "grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6",
+      "pillars": [
+        {
+          "title": "Calidad del Tejido",
+          "metric": "420 & 240 GSM",
+          "desc": "Algodón peinado orgánico de alto gramaje con tratamiento antipilling."
+        },
+        {
+          "title": "Corte & Ajuste",
+          "metric": "Drop Shoulder Boxy",
+          "desc": "Patronaje atlético estudiado para dar amplitud en hombro y ajuste en cintura."
+        },
+        {
+          "title": "Diseño Propio",
+          "metric": "I+D Independiente",
+          "desc": "Cero templates. Confección en talleres locales con costuras dobles blind."
+        },
+        {
+          "title": "Envío Rápido 24/48h",
+          "metric": "Trazabilidad Total",
+          "desc": "Packaging compostable negro mate con precinto de seguridad numerado."
+        }
+      ]
+    },
+    "cart_drawer": {
+      "type": "Slide-over right drawer (Vaul / Dialog)",
+      "trigger": "Header cart icon or 'Añadir al carrito' action",
+      "content": [
+        "List of items with thumbnail, title, selected size, selected color, unit price, quantity increment/decrement, and remove button",
+        "Subtotal, shipping calculation (Free over 70€), and total",
+        "Seamless checkout form inside drawer: Nombre, Email, Teléfono, Dirección de envío, Ciudad, Código Postal, Notas de entrega",
+        "Submit order button registering order to backend /api/orders (stored in database/memory)",
+        "Order confirmation screen with order reference number and summary"
+      ]
+    },
+    "about_and_contact": {
+      "about": "Manifesto block: 'Nacidos de la exigencia'. Historia de RH11 y por qué solo 2 piezas icónicas.",
+      "contact": "Interactive inquiry form (Nombre, Email, Asunto, Mensaje) + info directa (prensa, soporte, showroom Madrid)."
+    },
+    "footer": {
+      "style": "bg-[#070707] border-t border-white/10 py-16",
+      "content": [
+        "Giant RH11 watermark typography",
+        "Legal links: Términos, Privacidad, Guía de tallas, Devoluciones 30 días",
+        "Social: Instagram, TikTok, Strava, Spotify",
+        "Copyright: © 2026 RH11 APPAREL LAB. TODOS LOS DERECHOS RESERVADOS."
+      ]
+    }
+  },
+  "products_data": [
+    {
+      "id": "sudadera-rh11-heavyweight",
+      "name": "Sudadera RH11 Heavyweight Hood",
+      "category": "Sudadera",
+      "price": 89.00,
+      "currency": "EUR",
+      "badge": "Edición Limitada 420 GSM",
+      "rating": 4.9,
+      "reviews_count": 84,
+      "images": [
+        "https://images.unsplash.com/photo-1652823780977-b22c0ed84c97?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwzfHxhdGhsZXRpYyUyMHN0cmVldHdlYXIlMjBob29kaWUlMjBibGFja3xlbnwwfHx8fDE3ODc2NDU4OTV8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1610392462690-84766bd687ca?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwxfHxhdGhsZXRpYyUyMHN0cmVldHdlYXIlMjBob29kaWUlMjBibGFja3xlbnwwfHx8fDE3ODc2NDU4OTV8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1633292750937-120a94f5c2bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHw0fHxhdGhsZXRpYyUyMHN0cmVldHdlYXIlMjBob29kaWUlMjBibGFja3xlbnwwfHx8fDE3ODc2NDU4OTV8MA&ixlib=rb-4.1.0&q=85"
+      ],
+      "short_description": "Capucha envolvente sin cordones visibles, bolsillo canguro oculto y corte oversize atlético fabricado en algodón denso peinado.",
+      "full_description": "La sudadera definitiva de entrenamiento y calle. Diseñada con un peso estructural de 420 GSM que mantiene su caída limpia sesión tras sesión. Doble puño elástico, interior afelpado térmico de tacto sedoso y remates termosellados.",
+      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "colors": [
+        { "name": "Negro Obsidiana", "hex": "#0A0A0A" },
+        { "name": "Gris Carbón", "hex": "#27272A" },
+        { "name": "Rojo Umbra", "hex": "#5A0B13" }
+      ],
+      "specs": {
+        "gramaje": "420 GSM French Terry",
+        "composicion": "100% Algodón Peinado Orgánico",
+        "origen": "Confeccionado en Portugal / Tintado en España",
+        "lavado": "Lavar en frío a 30°C. No usar secadora. Planchar del revés."
+      }
+    },
+    {
+      "id": "camiseta-rh11-tactical-tee",
+      "name": "Camiseta RH11 Tactical Boxy Tee",
+      "category": "Camiseta",
+      "price": 45.00,
+      "currency": "EUR",
+      "badge": "Alta Densidad 240 GSM",
+      "rating": 4.9,
+      "reviews_count": 128,
+      "images": [
+        "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwxfHxibGFjayUyMGF0aGxldGljJTIwdC1zaGlydCUyMGRhcmt8ZW58MHx8fHwxNzkwNTg5NTg4fDA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1666358777322-a25eda95848f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHw0fHxibGFjayUyMGF0aGxldGljJTIwdC1zaGlydCUyMGRhcmt8ZW58MHx8fHwxNzkwNTg5NTg4fDA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1654570818480-54524bf0186b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwzfHxibGFjayUyMGF0aGxldGljJTIwdC1zaGlydCUyMGRhcmt8ZW58MHx8fHwxNzkwNTg5NTg4fDA&ixlib=rb-4.1.0&q=85"
+      ],
+      "short_description": "Cuello cerrado de 3 cm reforzado, hombro caído y acabado texturizado matte. La base perfecta para tu día a día de alto rendimiento.",
+      "full_description": "Construida para resistir el roce y mantener un porte intachable. El grosor de 240 GSM proporciona una silueta limpia sin transparencias. Transpirable, con costuras planas anti-rozaduras para levantamientos y uso diario.",
+      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "colors": [
+        { "name": "Negro Obsidiana", "hex": "#0A0A0A" },
+        { "name": "Gris Grafito", "hex": "#27272A" }
+      ],
+      "specs": {
+        "gramaje": "240 GSM Single Jersey",
+        "composicion": "100% Algodón Peinado Premium",
+        "origen": "Confeccionado en Portugal",
+        "lavado": "Lavar en frío a 30°C. Secado al aire recomendado."
+      }
+    }
+  ],
+  "editorial_imagery": {
+    "hero_lifestyle": "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwYXRobGV0ZSUyMG1vb2R5JTIwZGFya3xlbnwwfHx8fDE3OTA1ODk1OTR8MA&ixlib=rb-4.1.0&q=85",
+    "values_lifestyle": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwyfHxmaXRuZXNzJTIwYXRobGV0ZSUyMG1vb2R5JTIwZGFya3xlbnwwfHx8fDE3OTA1ODk1OTR8MA&ixlib=rb-4.1.0&q=85",
+    "about_lifestyle": "https://images.pexels.com/photos/20759092/pexels-photo-20759092.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "interactive_specs": {
+    "size_guide_table": [
+      { "size": "XS", "chest": "104 cm", "length": "68 cm", "sleeve": "59 cm", "recommended": "160-170 cm / 55-65 kg" },
+      { "size": "S", "chest": "108 cm", "length": "70 cm", "sleeve": "60 cm", "recommended": "168-175 cm / 65-72 kg" },
+      { "size": "M", "chest": "114 cm", "length": "72 cm", "sleeve": "61 cm", "recommended": "173-182 cm / 72-80 kg" },
+      { "size": "L", "chest": "120 cm", "length": "74 cm", "sleeve": "62 cm", "recommended": "178-188 cm / 80-88 kg" },
+      { "size": "XL", "chest": "126 cm", "length": "76 cm", "sleeve": "63 cm", "recommended": "182-192 cm / 88-96 kg" },
+      { "size": "XXL", "chest": "132 cm", "length": "78 cm", "sleeve": "64 cm", "recommended": "185-198 cm / >95 kg" }
+    ]
+  },
+  "backend_integration": {
+    "api_base": "/api",
+    "endpoints": {
+      "get_products": "/api/products (return static curated list)",
+      "create_order": "POST /api/orders (body: customer info, items, total, status: 'confirmed')",
+      "get_orders": "GET /api/orders",
+      "contact": "POST /api/contact"
+    }
+  },
+  "test_id_conventions": {
+    "cart_toggle": "cart-toggle-button",
+    "cart_drawer": "cart-drawer",
+    "cart_item": "cart-item",
+    "cart_checkout_button": "cart-checkout-button",
+    "order_submit_button": "order-submit-button",
+    "product_card_camiseta": "product-card-camiseta",
+    "product_card_sudadera": "product-card-sudadera",
+    "add_to_cart_button": "add-to-cart-button",
+    "size_selector_prefix": "size-select-",
+    "size_guide_button": "open-size-guide-button",
+    "contact_submit_button": "contact-submit-button"
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Use pure obsidian #0A0A0A base with razor-thin white/10 borders.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Accent color #8E0D1A (dark athletic red) is reserved solely for primary buttons, active tags, and strategic accents. Do not saturate the background with red.",
+    "Never center align the app container (.App { text-align: center; } is strictly forbidden).",
+    "Navigation bar must be sticky/fixed with heavy backdrop-blur-xl and bg-[#0A0A0A]/85, never fully transparent.",
+    "Both products ('Camiseta' and 'Sudadera') must have full interactive detail views with gallery zoom, size buttons (XS to XXL), color selectors, quantity, size guide, materials & care accordion, and add-to-cart.",
+    "Cart drawer must support full order checkout that persists order data into the database/API without third-party payment gateway.",
+    "Use sonner for toast feedback on cart operations.",
+    "All interactive elements MUST include explicit data-testid attributes."
+  ]
+}
